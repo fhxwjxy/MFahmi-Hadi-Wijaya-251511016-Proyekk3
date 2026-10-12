@@ -18,7 +18,6 @@ class PesananController extends Controller
 
     public function show(string $id)
     {
-        // Hanya pesanan milik user yang sedang login; pesanan orang lain menghasilkan 404
         $pesanan = Order::with('details.product')
             ->where('id_user', Auth::id())
             ->where('id_order', $id)
