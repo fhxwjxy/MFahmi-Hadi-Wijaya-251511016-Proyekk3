@@ -1,43 +1,37 @@
 @extends('layouts.app')
 
-@section('judul', 'Kelola Role')
+@section('judul', 'Daftar Barang')
 
 @section('isi')
-    <h2>Kelola Role Pengguna</h2>
+    <h1>Daftar Barang</h1>
 
-    @if (session('status'))
-        <p style="color:green">{{ session('status') }}</p>
-    @endif
-    @error('role')
-        <p style="color:red">{{ $message }}</p>
-    @enderror
+    <div class="grid">
+        @foreach ($produk as $p)
+            <div class="card">
+                @if ($p->gambar && file_exists(public_path('images/products/' . $p->gambar)))
+                    <img src="{{ asset('images/products/' . $p->gambar) }}" alt="{{ $p->nama_barang }}">
+                @else
+                    <div class="noimg">Tidak ada gambar</div>
+                @endif
 
-    <table border="1" cellpadding="6" style="background:#fff">
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Nama</th>
-            <th>Role saat ini</th>
-            <th>Ubah ke</th>
-        </tr>
-        @foreach ($users as $u)
-            <tr>
-                <td>{{ $u->id_user }}</td>
-                <td>{{ $u->username }}</td>
-                <td>{{ $u->nama_lengkap }}</td>
-                <td>{{ $u->role }}</td>
-                <td>
-                    <form method="POST" action="{{ route('admin.users.role.update', $u) }}">
-                        @csrf
-                        @method('PATCH')
-                        <select name="role">
-                            <option value="customer">customer</option>
-                            <option value="staff">staff</option>
-                        </select>
-                        <button class="btn" type="submit">Ubah</button>
-                    </form>
-                </td>
-            </tr>
+                <h3>{{ $p->nama_barang }}</h3>
+                <p>{{ $p->deskripsi }}</p>
+                <p><strong>Rp {{ number_format($p->harga, 0, ',', '.') }}</strong></p>
+                <p>Stok: {{ $p->stok }}</p>
+
+                @auth
+                    @if ($p->stok > 0)
+                        <form method="POST" action="{{ route('keranjang.tambah', $p->id_barang) }}">
+                            @csrf
+                            <button class="btn" type="submit">Masukkan ke keranjang</button>
+                        </form>
+                    @else
+                        <button class="btn" disabled>Stok habis</button>
+                    @endif
+                @else
+                    <a class="btn" href="{{ route('login') }}">Login untuk membeli</a>
+                @endauth
+            </div>
         @endforeach
-    </table>
+    </div>
 @endsection
