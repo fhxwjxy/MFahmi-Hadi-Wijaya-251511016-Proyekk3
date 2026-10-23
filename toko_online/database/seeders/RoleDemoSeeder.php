@@ -19,7 +19,6 @@ class RoleDemoSeeder extends Seeder
 
         foreach ($accounts as $a) {
             $user = User::firstOrNew(['username' => $a['username']]);
-            // forceFill dipakai karena role sengaja TIDAK ada di $fillable
             $user->forceFill([
                 'nama_lengkap' => $a['nama_lengkap'],
                 'role' => $a['role'],
