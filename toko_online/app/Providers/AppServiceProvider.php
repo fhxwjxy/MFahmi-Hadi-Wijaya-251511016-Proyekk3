@@ -35,6 +35,6 @@ class AppServiceProvider extends ServiceProvider
             fn(User $user): bool => $user->role === 'customer'
         );
 
-        //User::observe(UserObserver::class);
+        User::observe(UserObserver::class);
     }
 }

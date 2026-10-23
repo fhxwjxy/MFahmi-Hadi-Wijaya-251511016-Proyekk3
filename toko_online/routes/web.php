@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ProductController::class, 'index'])->name('produk.index');
 
 Route::get('/stateless', [CartController::class, 'index'])->name('stateless.index');
-Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/add', [CartController::class, 'add'])
+    ->middleware(['auth', 'can:use-cart'])
+    ->name('cart.add');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
 

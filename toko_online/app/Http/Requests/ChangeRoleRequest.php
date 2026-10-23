@@ -9,7 +9,6 @@ class ChangeRoleRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        // Otorisasi sudah dijaga middleware can:manage-roles di route
         return true;
     }
 
