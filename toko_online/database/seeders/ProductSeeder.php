@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
                 'deskripsi' => 'Buku tulis 38 lembar',
                 'harga' => 5000,
                 'stok' => 100,
-                'gambar' => 'Buku tulis.jpg'
+                'gambar' => 'bukutulis.jpg'
             ],
 
             [
@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
                 'deskripsi' => 'Pulpen tinta hitam',
                 'harga' => 3000,
                 'stok' => 80,
-                'gambar' => 'Pulpen.jpg'
+                'gambar' => 'pulpen.jpg'
             ],
 
             [
@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
                 'deskripsi' => 'Penggaris plastik 30 cm',
                 'harga' => 4000,
                 'stok' => 60,
-                'gambar' => 'Penggaris.jpg'
+                'gambar' => 'penggaris.jpg'
             ],
 
             [
@@ -43,7 +43,7 @@ class ProductSeeder extends Seeder
                 'deskripsi' => 'Pensil 2B untuk ujian',
                 'harga' => 2500,
                 'stok' => 120,
-                'gambar' => 'Pensil 2B.jpg'
+                'gambar' => 'pensil2b.jpg'
             ],
 
             [
@@ -52,7 +52,7 @@ class ProductSeeder extends Seeder
                 'deskripsi' => 'Penghapus karet putih',
                 'harga' => 1500,
                 'stok' => 90,
-                'gambar' => 'Penghapus.jpg'
+                'gambar' => 'penghapus.jpg'
             ],
 
             [
@@ -61,7 +61,7 @@ class ProductSeeder extends Seeder
                 'deskripsi' => 'Rautan pensil logam',
                 'harga' => 3500,
                 'stok' => 50,
-                'gambar' => 'Rautan Pensil.jpg'
+                'gambar' => 'rautanpensil.jpg'
             ],
 
             [
@@ -70,8 +70,7 @@ class ProductSeeder extends Seeder
                 'deskripsi' => 'Spidol papan tulis',
                 'harga' => 7000,
                 'stok' => 40,
-                'gambar' =>
-                    'Spidol.jpg'
+                'gambar' => 'spidol.jpg'
             ],
 
             [
@@ -89,7 +88,7 @@ class ProductSeeder extends Seeder
                 'deskripsi' => 'Map plastik berkancing',
                 'harga' => 2000,
                 'stok' => 75,
-                'gambar' => 'map-plastik.jpg'
+                'gambar' => 'mapplastik.jpg'
             ],
 
             [
@@ -98,7 +97,7 @@ class ProductSeeder extends Seeder
                 'deskripsi' => 'Buku gambar ukuran A4 (stok habis)',
                 'harga' => 6500,
                 'stok' => 0,
-                'gambar' => 'buku-gambar.jpg'
+                'gambar' => 'bukugambar.jpg'
             ],
         ]);
     }

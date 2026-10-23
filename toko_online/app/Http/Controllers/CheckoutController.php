@@ -27,7 +27,6 @@ class CheckoutController extends Controller
                 $total = 0;
                 $baris = [];
 
-                // 1. Cek stok ulang dan hitung total dari harga di database
                 foreach ($keranjang as $idBarang => $jumlah) {
                     $produk = Product::lockForUpdate()->find($idBarang);
 
@@ -45,7 +44,6 @@ class CheckoutController extends Controller
                     $baris[] = [$produk, $jumlah];
                 }
 
-                // 2. Buat pesanan
                 $order = Order::create([
                     'id_order' => $this->buatIdOrder(),
                     'id_user' => Auth::id(),
@@ -54,7 +52,6 @@ class CheckoutController extends Controller
                     'alamat_pengiriman' => $request->alamat_pengiriman,
                 ]);
 
-                // 3. Simpan detail dan kurangi stok
                 foreach ($baris as [$produk, $jumlah]) {
                     $order->details()->create([
                         'id_barang' => $produk->id_barang,
@@ -71,7 +68,6 @@ class CheckoutController extends Controller
             return redirect()->route('keranjang.index')->with('error', $e->getMessage());
         }
 
-        // 4. Kosongkan keranjang (hanya jika transaction berhasil)
         session()->forget('keranjang');
 
         return redirect()
@@ -79,7 +75,6 @@ class CheckoutController extends Controller
             ->with('sukses', 'Checkout berhasil. Pesanan Anda tercatat.');
     }
 
-    // Format: ORD + tanggal (8 digit) + 4 digit acak = 15 karakter
     private function buatIdOrder(): string
     {
         do {
