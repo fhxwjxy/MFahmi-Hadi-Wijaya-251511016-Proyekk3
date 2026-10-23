@@ -35,7 +35,6 @@ class AppServiceProvider extends ServiceProvider
             fn(User $user): bool => $user->role === 'customer'
         );
 
-        // Observer (dibuat di Langkah 8). Daftarkan SEKALI saja.
-        User::observe(UserObserver::class);
+        //User::observe(UserObserver::class);
     }
 }

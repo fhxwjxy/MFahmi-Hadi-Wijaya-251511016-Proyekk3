@@ -6,6 +6,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'index'])->name('produk.index');
@@ -13,6 +14,15 @@ Route::get('/', [ProductController::class, 'index'])->name('produk.index');
 Route::get('/stateless', [CartController::class, 'index'])->name('stateless.index');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+
+
+Route::middleware(['auth', 'can:manage-roles'])->group(function () {
+    Route::get('/admin/users', [RoleController::class, 'index'])
+        ->name('admin.users.index');
+
+    Route::patch('/admin/users/{user}/role', [RoleController::class, 'update'])
+        ->name('admin.users.role.update');
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
